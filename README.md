@@ -35,6 +35,51 @@ echo $rates->convertToTenge('USD', 100); // 33214 на момент написа
 
 require __DIR__ . '/vendor/autoload.php';
 
-$rates = new \naffiq\tenge\CurrencyRates(true); // При передаче аргумента true, обрабатывается второй источник нацбанка
+// При передаче аргумента true, обрабатывается второй источник нацбанка
+$rates = new \naffiq\tenge\CurrencyRates(true);
 echo $rates->convertToTenge('GBP', 100); // 41242 на момент написания примера
 ```
+
+Возможные коды валют
+* AUD
+* GBP
+* DKK
+* AED
+* USD
+* EUR
+* CAD
+* CNY
+* KWD
+* KGS
+* LVL
+* MDL
+* NOK
+* SAR
+* RUB
+* XDR
+* SGD
+* TRL
+* UZS
+* UAH
+* SEK
+* CHF
+* EEK
+* KRW
+* JPY
+* BYN
+* PLN
+* ZAR
+* TRY
+* HUF
+* CZK
+* TJS
+* HKD
+* BRL
+* MYR
+* AZN
+* INR
+* THB
+* AMD
+* GEL
+* IRR
+* MXN
