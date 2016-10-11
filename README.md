@@ -22,3 +22,19 @@ require __DIR__ . '/vendor/autoload.php';
 $rates = new \naffiq\tenge\CurrencyRates();
 echo $rates->convertToTenge('USD', 100); // 33214 на момент написания примера
 ```
+
+Возможные коды валют:
+* USD
+* RUR
+* EUR
+
+### Больше видов валют
+
+```php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+$rates = new \naffiq\tenge\CurrencyRates(true); // При передаче аргумента true, обрабатывается второй источник нацбанка
+echo $rates->convertToTenge('GBP', 100); // 41242 на момент написания примера
+```
