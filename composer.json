@@ -1,0 +1,19 @@
+{
+    "name": "naffiq/php-tenge-rates",
+    "description": "PHP wrapper for Official National Bank tenge currency rates",
+    "require": {
+        "rquadling/lalit": "^1.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Galymzhan Abdugalimov",
+            "email": "abdu.galymzhan@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "naffiq\\tenge\\": "src"
+        }
+    }
+}
