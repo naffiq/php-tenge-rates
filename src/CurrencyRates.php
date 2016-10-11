@@ -22,6 +22,8 @@ class CurrencyRates
     // Ссылка на основные валюты
     const URL_RATES_MAIN = "http://www.nationalbank.kz/rss/rates.xml";
 
+    private $all = false;
+
     /**
      * @var Currency[]
      */
@@ -34,6 +36,7 @@ class CurrencyRates
      */
     public function __construct($all = false)
     {
+        $this->all = $all;
         $data = self::getRates($all);
 
         foreach ($data['rss']['channel']['item'] as $currencyRate) {
@@ -92,7 +95,7 @@ class CurrencyRates
         $currencyCode = strtoupper($currencyCode);
 
         // Т.к. Нацбанк Казахстана использует устаревший код RUR, проверяем
-        if ($currencyCode == 'RUB') $currencyCode = 'RUR';
+        if ($currencyCode == 'RUB' && !$this->all) $currencyCode = 'RUR';
 
         if (!empty($this->_rates[$currencyCode])) {
             if ($from) {
