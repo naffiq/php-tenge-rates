@@ -1,4 +1,6 @@
 # Курсы валют от Нацбанка Казахстана
+[alt text](https://api.travis-ci.org/naffiq/php-tenge-rates.svg?branch=master "Travis CI build")
+
 
 Данный компонент является оберткой для обработки курса от Нацбанка.
 
