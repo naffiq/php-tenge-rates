@@ -10,4 +10,4 @@ install:
   - alias codecept='/home/travis/.composer/vendor/bin/codecept'
 
 script:
-  - codecept run
+  - /home/travis/.composer/vendor/bin/codecept run
