@@ -6,7 +6,7 @@ php:
   - '7.0'
 install: 
   - composer install
-  - composer global require codeception
+  - composer global require "codeception/codeception:*"
 
 script:
   - codecept run
