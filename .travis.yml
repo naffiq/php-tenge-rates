@@ -7,6 +7,7 @@ php:
 install: 
   - composer install
   - composer global require "codeception/codeception:*"
+  - alias codecept ="/home/travis/.composer/bin/codecept"
 
 script:
   - codecept run
