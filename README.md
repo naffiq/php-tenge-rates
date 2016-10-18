@@ -42,7 +42,7 @@ $rates = new \naffiq\tenge\CurrencyRates(true);
 echo $rates->convertToTenge('GBP', 100); // 41242 на момент написания примера
 ```
 
-Возможные коды валют
+Все возможные коды валют:
 * AUD
 * GBP
 * DKK
