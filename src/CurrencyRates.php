@@ -43,10 +43,6 @@ class CurrencyRates
             $currencyTitle = strtoupper($currencyRate['title']);
             $this->_rates[$currencyRate['title']] = new Currency($currencyRate);
         }
-
-        foreach ($this->_rates as $k => $rate) {
-            echo "* $k \n";
-        }
     }
 
     /**
