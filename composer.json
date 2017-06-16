@@ -1,6 +1,6 @@
 {
     "name": "naffiq/php-tenge-rates",
-    "description": "PHP wrapper for Official National Bank tenge currency rates",
+    "description": "PHP wrapper for Kazakhstani Official National Bank tenge currency rates",
     "require": {
         "rquadling/lalit": "^1.5"
     },
@@ -11,9 +11,15 @@
             "email": "abdu.galymzhan@gmail.com"
         }
     ],
+    "scripts" : {
+        "test": "./vendor/bin/phpunit"
+    },
     "autoload": {
         "psr-4": {
             "naffiq\\tenge\\": "src"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.7"
     }
 }

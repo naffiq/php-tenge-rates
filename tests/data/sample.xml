@@ -1,0 +1,41 @@
+<rss version="2.0">
+    <channel>
+        <generator>Alternate RSS Builder</generator>
+        <title>
+            Official exchange rates of National Bank of Republic Kazakhstan
+        </title>
+        <link>www.nationalbank.kz</link>
+        <description>
+            Official exchange rates of National Bank of Republic Kazakhstan
+        </description>
+        <language>ru</language>
+        <copyright>www.nationalbank.kz</copyright>
+        <item>
+            <title>RUR</title>
+            <pubDate>16.06.17</pubDate>
+            <description>5.53</description>
+            <quant>1</quant>
+            <index>DOWN</index>
+            <change>-0.01</change>
+            <link/>
+        </item>
+        <item>
+            <title>EUR</title>
+            <pubDate>16.06.17</pubDate>
+            <description>354.5</description>
+            <quant>1</quant>
+            <index>UP</index>
+            <change>+0.12</change>
+            <link/>
+        </item>
+        <item>
+            <title>USD</title>
+            <pubDate>16.06.17</pubDate>
+            <description>317.65</description>
+            <quant>1</quant>
+            <index>UP</index>
+            <change>+1.38</change>
+            <link/>
+        </item>
+    </channel>
+</rss>
