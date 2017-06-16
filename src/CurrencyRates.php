@@ -22,7 +22,10 @@ class CurrencyRates
     // Ссылка на основные валюты
     const URL_RATES_MAIN = "http://www.nationalbank.kz/rss/rates.xml";
 
-    private $all = false;
+    /**
+     * @var string Ссылка на API Национального Банка Казахстана
+     */
+    private $url = self::URL_RATES_MAIN;
 
     /**
      * @var Currency[]
@@ -32,16 +35,16 @@ class CurrencyRates
     /**
      * CurrencyRates constructor.
      *
-     * @param bool $all
+     * @param string $url
      */
-    public function __construct($all = false)
+    public function __construct($url = self::URL_RATES_MAIN)
     {
-        $this->all = $all;
-        $data = self::getRates($all);
+        $this->url = $url;
+        $data = self::getRates();
 
         foreach ($data['rss']['channel']['item'] as $currencyRate) {
             $currencyTitle = strtoupper($currencyRate['title']);
-            $this->_rates[$currencyRate['title']] = new Currency($currencyRate);
+            $this->_rates[$currencyRate['title']] = Currency::fromArray($currencyRate);
         }
     }
 
@@ -91,7 +94,7 @@ class CurrencyRates
         $currencyCode = strtoupper($currencyCode);
 
         // Т.к. Нацбанк Казахстана использует устаревший код RUR, проверяем
-        if ($currencyCode == 'RUB' && !$this->all) $currencyCode = 'RUR';
+        if ($currencyCode == 'RUB' && !empty($this->_rates['RUR'])) $currencyCode = 'RUR';
 
         if (!empty($this->_rates[$currencyCode])) {
             if ($from) {
@@ -107,15 +110,13 @@ class CurrencyRates
     }
 
     /**
-     * Возвращает XML с курсом валют
+     * Конвертирует XML с курсом валют в массив
      *
-     * @param $all bool При значении `false` получит курсы только для рубля, доллара и евро
-     *
-     * @return string
+     * @return array
      */
-    private static function getRates($all = false)
+    private function getRates()
     {
-        $data = file_get_contents($all ? self::URL_RATES_ALL : self::URL_RATES_MAIN);
+        $data = file_get_contents($this->url);
 
         $xmlData = XML2Array::createArray($data);
         return $xmlData;

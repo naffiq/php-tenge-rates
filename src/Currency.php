@@ -50,14 +50,19 @@ class Currency
      * Currency constructor.
      * @param $data
      */
-    public function __construct($data)
+    public function __construct($title, $pubDate, $buyRate, $sellRate, $index, $quantity)
     {
-        $this->title = $data['title'];
-        $this->pubDate = $data['pubDate'];
-        $this->buyRate = (double) $data['description'];
-        $this->sellRate = $this->buyRate + (double) $data['change'];
-        $this->index = $data['index'];
-        $this->quantity = (int) $data['quant'];
+        $this->title = $title;
+        $this->pubDate = $pubDate;
+        $this->buyRate = $buyRate;
+        $this->sellRate = $sellRate;
+        $this->index = $index;
+        $this->quantity = $quantity;
+    }
+
+    public static function fromArray(array $data)
+    {
+        return new static($data['title'], $data['pubDate'], (double)$data['description'], (double)$data['description'] + (double)$data['change'], $data['index'], (int)$data['quant']);
     }
 
     /**
