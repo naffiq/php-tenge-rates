@@ -20,8 +20,8 @@ $ composer require naffiq/php-tenge-rates
 <?php
 
 require __DIR__ . '/vendor/autoload.php';
-
-$rates = new \naffiq\tenge\CurrencyRates();
+use naffiq\tenge\CurrencyRates;
+$rates = new CurrencyRates();
 echo $rates->convertToTenge('USD', 100); // 33214 на момент написания примера
 ```
 
@@ -37,8 +37,9 @@ echo $rates->convertToTenge('USD', 100); // 33214 на момент написа
 
 require __DIR__ . '/vendor/autoload.php';
 
-// При передаче аргумента true, обрабатывается второй источник нацбанка
-$rates = new \naffiq\tenge\CurrencyRates(true);
+use naffiq\tenge\CurrencyRatecs;
+// URL для всех валют содержится в качестве константы в классе CurrencyRates
+$rates = new CurrencyRates(CurrencyRates::URL_RATES_ALL);
 echo $rates->convertToTenge('GBP', 100); // 41242 на момент написания примера
 ```
 
@@ -85,3 +86,23 @@ echo $rates->convertToTenge('GBP', 100); // 41242 на момент написа
 * GEL
 * IRR
 * MXN
+
+## Прохождение по валютам
+Ниже предоставлен пример кода для прохождения по всем валютам. 
+Класс `\naffiq\tenge\CurrencyRates` имлементирует интерфейсы `\Countable` и `\IteratorAggregate`,
+так что с его объектами можно орудовать как с массивами. 
+
+```php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+use naffiq\tenge\CurrencyRates;
+$rates = new CurrencyRates();
+
+foreach ($rates as $rate) {
+    /**
+     * @var \naffiq\tenge\Currency $rate 
+     */
+    echo "{$rate->title} - {$rate->price}";
+}
+```
