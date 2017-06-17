@@ -59,7 +59,7 @@ class CurrencyRates
      */
     public function convertToTenge($currencyCode, $quantity = 1)
     {
-        return $this->getCurrency($currencyCode)->fromTenge($quantity);
+        return $this->getCurrency($currencyCode)->toTenge($quantity);
     }
 
     /**
@@ -73,7 +73,7 @@ class CurrencyRates
      */
     public function convertFromTenge($currencyCode, $quantity = 1)
     {
-        return $this->getCurrency($currencyCode)->convertToTenge($quantity);
+        return $this->getCurrency($currencyCode)->fromTenge($quantity);
     }
 
     /**
