@@ -8,6 +8,7 @@
  */
 
 use naffiq\tenge\CurrencyRates;
+use naffiq\tenge\Currency;
 
 class CurrencyRatesTest extends \PHPUnit\Framework\TestCase
 {
@@ -52,5 +53,19 @@ class CurrencyRatesTest extends \PHPUnit\Framework\TestCase
         $rates = new CurrencyRates(__DIR__ . '/data/sample.xml');
 
         $this->assertEquals(3, $rates->convertFromTenge('RUR', 16.59));
+    }
+
+    public function testCountable()
+    {
+        $rates = new CurrencyRates(__DIR__ . '/data/sample.xml');
+        $this->assertEquals(3, count($rates));
+    }
+
+    public function testIteratorAggregate()
+    {
+        $rates = new CurrencyRates(__DIR__ . '/data/sample.xml');
+        foreach ($rates as $rate) {
+            $this->assertTrue($rate instanceof Currency);
+        }
     }
 }
