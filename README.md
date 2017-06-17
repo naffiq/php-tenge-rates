@@ -1,6 +1,9 @@
 # Курсы валют от Нацбанка Казахстана
 [![PHP version](https://badge.fury.io/ph/naffiq%2Fphp-tenge-rates.svg)](https://badge.fury.io/ph/naffiq%2Fphp-tenge-rates)
 [![Travis CI build](https://api.travis-ci.org/naffiq/php-tenge-rates.svg?branch=master "Travis CI build")](https://travis-ci.org/naffiq/php-tenge-rates)
+[![Code Climate](https://codeclimate.com/github/naffiq/php-tenge-rates/badges/gpa.svg)](https://codeclimate.com/github/naffiq/php-tenge-rates)
+[![Test Coverage](https://codeclimate.com/github/naffiq/php-tenge-rates/badges/coverage.svg)](https://codeclimate.com/github/naffiq/php-tenge-rates/coverage)
+[![Issue Count](https://codeclimate.com/github/naffiq/php-tenge-rates/badges/issue_count.svg)](https://codeclimate.com/github/naffiq/php-tenge-rates)
 
 Данный компонент является оберткой для обработки курса от Нацбанка.
 
