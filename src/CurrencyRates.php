@@ -44,7 +44,7 @@ class CurrencyRates
 
         foreach ($data['rss']['channel']['item'] as $currencyRate) {
             $currencyTitle = strtoupper($currencyRate['title']);
-            $this->_rates[$currencyRate['title']] = Currency::fromArray($currencyRate);
+            $this->_rates[$currencyTitle] = Currency::fromArray($currencyRate);
         }
     }
 
@@ -53,14 +53,13 @@ class CurrencyRates
      *
      * @param string    $currencyCode   код валюты
      * @param int       $quantity       кол-во переводимой валюты
-     * @param bool      $buy            если выставлено true, то возвращает цену покупки валюты банком
      *
      * @return double
      * @throws \Exception
      */
-    public function convertToTenge($currencyCode, $quantity = 1, $buy = false)
+    public function convertToTenge($currencyCode, $quantity = 1)
     {
-        return $this->convert($currencyCode, $quantity, $buy);
+        return $this->getCurrency($currencyCode)->fromTenge($quantity);
     }
 
     /**
@@ -68,28 +67,23 @@ class CurrencyRates
      *
      * @param string    $currencyCode   код валюты
      * @param int       $quantity       кол-во переводимой валюты
-     * @param bool      $buy            если выставлено true, то возвращает цену покупки валюты банком
      *
      * @return float
      * @throws \Exception
      */
-    public function convertFromTenge($currencyCode, $quantity = 1, $buy = false)
+    public function convertFromTenge($currencyCode, $quantity = 1)
     {
-        return $this->convert($currencyCode, $quantity, $buy, true);
+        return $this->getCurrency($currencyCode)->convertToTenge($quantity);
     }
 
     /**
-     * Внутренний метод перевода валют с проверкой входных данных
+     * Поиск валюты по коду
      *
-     * @param string    $currencyCode   код валюты
-     * @param int       $quantity       кол-во переводимой валюты
-     * @param bool      $buy            если выставлено true, то возвращает цену покупки валюты банком
-     * @param bool      $from           при указанном параметре true, осуществляет конвертацию из тенге
-     *
-     * @return float
+     * @param string $currencyCode
+     * @return Currency
      * @throws \Exception
      */
-    private function convert($currencyCode, $quantity = 1, $buy = false, $from = false)
+    public function getCurrency($currencyCode)
     {
         $currencyCode = strtoupper($currencyCode);
 
@@ -97,13 +91,7 @@ class CurrencyRates
         if ($currencyCode == 'RUB' && !empty($this->_rates['RUR'])) $currencyCode = 'RUR';
 
         if (!empty($this->_rates[$currencyCode])) {
-            if ($from) {
-                $result = $this->_rates[$currencyCode]->convertFromTenge($quantity, $buy);
-            } else {
-                $result = $this->_rates[$currencyCode]->convertToTenge($quantity, $buy);
-            }
-
-            return (float) number_format($result, 2);
+           return $this->_rates[$currencyCode];
         }
 
         throw new \Exception('Undefined currency code');

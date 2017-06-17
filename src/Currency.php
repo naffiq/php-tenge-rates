@@ -27,14 +27,14 @@ class Currency
     public $pubDate;
 
     /**
-     * @var double
+     * @var float
      */
-    public $sellRate;
+    public $price;
 
     /**
-     * @var double
+     * @var float
      */
-    public $buyRate;
+    public $change;
 
     /**
      * @var int
@@ -48,42 +48,45 @@ class Currency
 
     /**
      * Currency constructor.
-     * @param $data
+     * @param string $title Название валюты
+     * @param string $pubDate
+     * @param float $price
+     * @param float $change
+     * @param int $index
+     * @param int $quantity
      */
-    public function __construct($title, $pubDate, $buyRate, $sellRate, $index, $quantity)
+    public function __construct($title, $pubDate, $price, $change, $index, $quantity)
     {
         $this->title = $title;
         $this->pubDate = $pubDate;
-        $this->buyRate = $buyRate;
-        $this->sellRate = $sellRate;
+        $this->price = $price;
+        $this->change = $change;
         $this->index = $index;
         $this->quantity = $quantity;
     }
 
     public static function fromArray(array $data)
     {
-        return new static($data['title'], $data['pubDate'], (double)$data['description'], (double)$data['description'] + (double)$data['change'], $data['index'], (int)$data['quant']);
+        return new static($data['title'], $data['pubDate'], (double)$data['description'], (double)$data['change'], $data['index'], (int)$data['quant']);
     }
 
     /**
      * @param $quantity
-     * @param bool $buy
      *
      * @return double
      */
-    public function convertToTenge($quantity, $buy = false)
+    public function toTenge($quantity)
     {
-        return $quantity * ($buy ? $this->buyRate : $this->sellRate) / $this->quantity;
+        return $quantity * $this->price / $this->quantity;
     }
 
     /**
      * @param $quantity
-     * @param bool $buy
      * @return float
      */
-    public function convertFromTenge($quantity, $buy = false)
+    public function fromTenge($quantity)
     {
-        return $quantity / ($buy ? $this->buyRate : $this->sellRate) * $this->quantity;
+        return $quantity / $this->price * $this->quantity;
     }
 
     /**
