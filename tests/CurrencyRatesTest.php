@@ -41,6 +41,14 @@ class CurrencyRatesTest extends \PHPUnit\Framework\TestCase
         $this->assertNotEmpty($rates->getCurrency('RUR'));
     }
 
+    public function testGetRatesThatDoesNotExists()
+    {
+        $rates = new CurrencyRates(__DIR__ . '/data/sample.xml');
+
+        $this->expectException('\Exception');
+        $rates->getCurrency('NAFFIQ_DOLLAR');
+    }
+
     public function testConvertToTenge()
     {
         $rates = new CurrencyRates(__DIR__ . '/data/sample.xml');
