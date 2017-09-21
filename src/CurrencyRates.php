@@ -37,11 +37,12 @@ class CurrencyRates implements \IteratorAggregate, \Countable
      * CurrencyRates constructor.
      *
      * @param string $url
+     * @param int $timeout Timeout for getting currency data
      */
-    public function __construct($url = self::URL_RATES_MAIN)
+    public function __construct($url = self::URL_RATES_MAIN, $timeout = 1)
     {
         $this->url = $url;
-        $data = self::getRates();
+        $data = self::getRates($timeout);
 
         foreach ($data['rss']['channel']['item'] as $currencyRate) {
             $currencyTitle = strtoupper($currencyRate['title']);
@@ -103,9 +104,10 @@ class CurrencyRates implements \IteratorAggregate, \Countable
      *
      * @return array
      */
-    private function getRates()
+    private function getRates($timeout = 1)
     {
-        $data = file_get_contents($this->url);
+        $options = stream_context_create(['http'=> ['timeout' => $timeout]]);
+        $data = file_get_contents($this->url, false, $options);
 
         $xmlData = XML2Array::createArray($data);
         return $xmlData;
