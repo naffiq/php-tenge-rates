@@ -21,14 +21,14 @@ class CurrencyRatesTest extends \PHPUnit\Framework\TestCase
 
     public function testRSSAvailability()
     {
-        $rates = new CurrencyRates();
+        $rates = new CurrencyRates(CurrencyRates::URL_RATES_MAIN, 2);
 
         $this->assertNotEmpty($rates->convertToTenge('RUB'));
     }
 
     public function testRSSAllAvailability()
     {
-        $rates = new CurrencyRates(CurrencyRates::URL_RATES_ALL);
+        $rates = new CurrencyRates(CurrencyRates::URL_RATES_ALL, 2);
 
         $this->assertNotEmpty($rates->convertToTenge('RUB'));
     }
