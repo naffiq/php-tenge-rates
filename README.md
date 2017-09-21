@@ -109,3 +109,15 @@ foreach ($rates as $rate) {
     echo "{$rate->title} - {$rate->price}";
 }
 ```
+
+## Лимит времени запроса
+
+По умолчанию лимит времени запроса стоит 1 секунду. Если вы хотите сменить его, то инициализируйте класс `CurrencyRates` со вторым параметром `$timeout`.
+
+```php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+use naffiq\tenge\CurrencyRates;
+$rates = new CurrencyRates(CurrencyRates::URL_RATES_MAIN, 10); // $timeout == 10
+```
