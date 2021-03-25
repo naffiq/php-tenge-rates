@@ -19,9 +19,9 @@ use Traversable;
 class CurrencyRates implements \IteratorAggregate, \Countable
 {
     // Ссылка на все валюты
-    const URL_RATES_ALL = "http://www.nationalbank.kz/rss/rates_all.xml";
+    const URL_RATES_ALL = "http://old.nationalbank.kz/rss/rates_all.xml";
     // Ссылка на основные валюты
-    const URL_RATES_MAIN = "http://www.nationalbank.kz/rss/rates.xml";
+    const URL_RATES_MAIN = "http://old.nationalbank.kz/rss/rates.xml";
 
     /**
      * @var string Ссылка на API Национального Банка Казахстана
